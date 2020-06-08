@@ -8,26 +8,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Associado implements Serializable{
+public class Pauta implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	private String nome;
-	private String cpf;
-	
-	public Associado() {
-		
-	}
-
-	public Associado(Integer id, String nome, String cpf) {
+	private String descricao;
+	public Pauta(Integer id, String descricao) {
 		super();
 		this.id = id;
-		this.nome = nome;
-		this.cpf = cpf;
+		this.descricao = descricao;
 	}
-
+	
 	public Integer getId() {
 		return id;
 	}
@@ -36,20 +29,12 @@ public class Associado implements Serializable{
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 	@Override
@@ -59,7 +44,6 @@ public class Associado implements Serializable{
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -68,7 +52,7 @@ public class Associado implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Associado other = (Associado) obj;
+		Pauta other = (Pauta) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -78,4 +62,5 @@ public class Associado implements Serializable{
 	}
 	
 	
+
 }
