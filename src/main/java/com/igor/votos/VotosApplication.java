@@ -1,5 +1,6 @@
 package com.igor.votos;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +10,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.igor.votos.domain.Associado;
 import com.igor.votos.domain.Pauta;
+import com.igor.votos.domain.Sessao;
 import com.igor.votos.repositories.AssociadoRepository;
 import com.igor.votos.repositories.PautaRepository;
+import com.igor.votos.repositories.SessaoRepository;
 
 @SpringBootApplication
 public class VotosApplication implements CommandLineRunner {
@@ -19,6 +22,8 @@ public class VotosApplication implements CommandLineRunner {
 	private AssociadoRepository associadoRepository ;
 	@Autowired
 	private PautaRepository pautaRepository ;
+	@Autowired
+	private SessaoRepository sessaoRepository ;
 
 	public static void main(String[] args) {
 		SpringApplication.run(VotosApplication.class, args);
@@ -35,8 +40,12 @@ public class VotosApplication implements CommandLineRunner {
 		Pauta pauta2 = new Pauta(null,"Pauta de teste 2");
 		
 		pautaRepository.saveAll(Arrays.asList(pauta1,pauta2));
-
 		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+//		Integer id, Integer duracao, Date inicio_sessao, Date fim_sessao
+		Sessao sessao1 = new Sessao(null, 10, sdf.parse("08/06/2020 01:06"), sdf.parse("08/06/2020 01:16"));
+
+		sessaoRepository.saveAll(Arrays.asList(sessao1));
 	}
 
 }
