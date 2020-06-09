@@ -12,6 +12,8 @@ import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Sessao implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -21,7 +23,8 @@ public class Sessao implements Serializable {
 	private Integer duracao;
 	private Date inicio_sessao;
 	private Date fim_sessao;
-
+	
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name = "pauta_id")
 	@MapsId

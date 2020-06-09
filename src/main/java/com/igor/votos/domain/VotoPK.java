@@ -9,7 +9,7 @@ import javax.persistence.ManyToOne;
 @Embeddable
 public class VotoPK implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@ManyToOne
 	@JoinColumn(name="associado_id")
 	private Associado associado;

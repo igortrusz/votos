@@ -19,7 +19,7 @@ public class Associado implements Serializable {
 	private Integer id;
 	private String nome;
 	private String cpf;
-
+	
 	@OneToMany(mappedBy="id.associado")
 	private Set<Voto> votos = new HashSet<>();
 	

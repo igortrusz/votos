@@ -5,10 +5,13 @@ import java.io.Serializable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Voto implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	@JsonIgnore
 	@EmbeddedId
 	private VotoPK id = new VotoPK();
 	
@@ -25,10 +28,11 @@ public class Voto implements Serializable {
 		this.opcao = opcao;
 	}
 	
+	@JsonIgnore
 	public Sessao getSessao() {
 		return id.getSessao();
 	}
-	
+	@JsonIgnore
 	public Associado getAssociado() {
 		return id.getAssociado();
 	}
