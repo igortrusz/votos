@@ -1,24 +1,29 @@
 package com.igor.votos.domain;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
-public class Associado implements Serializable{
+public class Associado implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
 	private String cpf;
+
+	@OneToMany(mappedBy="id.associado")
+	private Set<Voto> votos = new HashSet<>();
 	
 	public Associado() {
-		
 	}
 
 	public Associado(Integer id, String nome, String cpf) {
@@ -52,6 +57,14 @@ public class Associado implements Serializable{
 		this.cpf = cpf;
 	}
 
+	public Set<Voto> getVotos() {
+		return votos;
+	}
+
+	public void setVotos(Set<Voto> votos) {
+		this.votos = votos;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -76,6 +89,5 @@ public class Associado implements Serializable{
 			return false;
 		return true;
 	}
-	
-	
+
 }

@@ -2,25 +2,34 @@ package com.igor.votos.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
-public class Pauta implements Serializable{
+public class Pauta implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String descricao;
+
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "pauta")
+	private Sessao sessao;
+	
+	public Pauta() {
+	}
+
 	public Pauta(Integer id, String descricao) {
 		super();
 		this.id = id;
 		this.descricao = descricao;
 	}
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -36,6 +45,14 @@ public class Pauta implements Serializable{
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+	
+	public Sessao getSessao() {
+		return sessao;
+	}
+
+	public void setSessao(Sessao sessao) {
+		this.sessao = sessao;
+	}
 
 	@Override
 	public int hashCode() {
@@ -44,6 +61,7 @@ public class Pauta implements Serializable{
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -60,7 +78,5 @@ public class Pauta implements Serializable{
 			return false;
 		return true;
 	}
-	
-	
 
 }
